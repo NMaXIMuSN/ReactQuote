@@ -1,0 +1,36 @@
+.Actions {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background-color: #6A6A6A;
+  margin: -3px;
+}
+
+.Actions > * {
+  margin: 5px;
+}
+
+.Actions__item {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-white);
+  cursor: pointer;
+}
+
+.Actions__item-next {
+  transform: scale(-1, 1);
+}
+
+.Actions__item__icon {
+  width: 25px;
+  height: 25px;
+}

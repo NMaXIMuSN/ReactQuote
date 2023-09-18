@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Ingrid+Darling&family=Karla:wght@400;700&display=swap');
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Ingrid Darling, Arial, sans-serif;
+}
+
+:root {
+  --bg-white: #FFF;
+  --bg-grey: #4F4C4C;
+  --bg-black: #000;
+}
+
+body {
+  background-color: var(--bg-grey);
+}

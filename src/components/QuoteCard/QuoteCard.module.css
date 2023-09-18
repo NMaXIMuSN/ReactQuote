@@ -1,0 +1,102 @@
+.QuoteCard {
+  perspective: 1000px;
+  position: relative;
+  min-width: 500px;
+  min-height: 250px;
+  perspective-origin: center center;
+}
+
+.QuoteCard__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.QuoteCard:hover .QuoteCard__inner {
+  transform: rotateY(180deg);
+}
+
+.QuoteCard__front, .QuoteCard__back {
+  min-width: 500px;
+  min-height: 250px;
+  background-color: var(--bg-white);
+  color: var(--bg-black);
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+
+}
+
+.QuoteCard__back {
+  background-color: var(--bg-black);
+  color: var(--bg-white);
+  transform: rotateY(180deg)
+}
+
+.QuoteCard__text {
+  max-width: 250px;
+  text-align: center;
+  font-size: 21px;
+  color: inherit;
+}
+
+.QuoteCard__style {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  top: 10px;
+  left: 10px;
+}
+
+.QuoteCard__style_bot {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 10px;
+  bottom: 10px;
+  rotate: 180deg;
+}
+
+
+.QuoteCard__style::after {
+  position: absolute;
+  height: 1px;
+  width: 70%;
+  background-color: var(--bg-black);
+  content: "";
+  top: 10px;
+  left: 30px;
+}
+
+.QuoteCard__style::before {
+  position: absolute;
+  height: 120px;
+  width: 1px;
+  background-color: var(--bg-black);
+  content: "";
+  top: 30px;
+  left: 10px;
+}
+
+.QuoteCard__back .QuoteCard__style::after,
+.QuoteCard__back .QuoteCard__style::before {
+  background-color: var(--bg-white);
+}
+
+.QuoteCard__quote__icon {
+  width: 21px;
+  height: 21px;
+}

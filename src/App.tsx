@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { QuoteCard } from './components/QuoteCard/QuoteCard';
+import QuoteService from './API/QuoteService';
+import './style/App.css';
+import { QuoteData } from './interfaces/Quote';
+import { useFetching } from './hooks/useFetching';
+import { Actions } from './components/Actions/Actions';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [quotes, setQuotes] = useState<QuoteData[]>([]);
+	const [quoteIndex, setQuoteIndex] = useState(-1);
+
+  
+	const [fetchQuote] = useFetching(async () => {
+		const nextQuote = await QuoteService.fetchRandomQuote()
+		const copyQuotes = [...quotes]
+		copyQuotes.splice(quoteIndex + 1, 0, nextQuote)
+		setQuotes(copyQuotes)
+		setQuoteIndex(quoteIndex + 1)
+  })
+
+	const onPrev = () => {
+		setQuoteIndex(Math.max(quoteIndex - 1, 0))
+	}
+	const onNext = () => {
+		setQuoteIndex(Math.min(quoteIndex + 1, quotes.length - 1))
+	}
+	
+	useEffect(() => {
+		fetchQuote();
+	}, []);
+
+	return (
+		<div className="App">
+      {quotes.length
+       ? <QuoteCard quote={quotes[quoteIndex]} />
+       : ''
+      }
+      <Actions onPrev={onPrev} onRandom={fetchQuote} onNext={onNext}/>
+		</div>
+	);
 }
 
 export default App;
